@@ -1,7 +1,9 @@
 # set base image (host OS)
-FROM python:3.8
+FROM python:3.8-buster
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+RUN sed -i -e 's|deb.debian.org|archive.debian.org|g' -e '/buster-updates/d' /etc/apt/sources.list
 
 RUN apt-get -y update
 RUN apt-get install -y curl nano wget nginx git
@@ -19,10 +21,6 @@ RUN apt-get install -y mongodb-org
 
 # Install Yarn
 RUN apt-get install -y yarn
-
-# Install PIP
-RUN easy_install pip
-
 
 ENV ENV_TYPE staging
 ENV MONGO_HOST mongo

@@ -1,0 +1,13 @@
+# Runtime data written through the docker-compose bind mounts
+src/db/
+src/tmp/
+
+# Empty SQLite file Django's runserver creates at startup (the app uses MongoDB)
+src/rest/mydatabase
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# ESLint cache written by the React dev server
+.eslintcache

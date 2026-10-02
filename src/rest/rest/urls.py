@@ -13,9 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import re_path
 from .views import TodoListView
 
 urlpatterns = [
-    path('todos/', TodoListView.as_view(), name='signup'),
+    # Trailing slash optional: README documents /todos, and APPEND_SLASH
+    # cannot redirect a POST to /todos/ without losing its body.
+    re_path(r'^todos/?$', TodoListView.as_view(), name='todos'),
 ]
